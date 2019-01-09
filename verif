@@ -1,0 +1,62 @@
+<?php
+
+if($_POST['password']==$_POST['passwordConf']){
+
+
+require_once 'config.php';
+try {
+
+    $bdd = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $requete = $bdd->prepare('select INTO Utilisateur (username, password) VALUES (:username, :password)');
+
+
+
+    //Requête SQL
+    $requete->execute(array('username' => $_POST['username'];
+
+    if(!$requete){
+      echo 'mauvais';
+      }
+      else{
+        try {
+
+          
+            $requete = $bdd->prepare('INSERT INTO Utilisateur (username, password) VALUES (:username, :password)');
+
+
+
+            //Requête SQL
+            $requete->execute(array('username' => $_POST['username'],
+                                'password' => $_POST['password']
+
+          ));
+
+          echo 'Bienvenue';
+          }
+
+
+        catch (PDOException $e) {
+            print "Erreur : " . $e->getMessage() . "<br/>";
+            die();
+        }
+        }
+
+  ));
+
+  echo 'Bienvenue';
+  }
+
+
+catch (PDOException $e) {
+    print "Erreur : " . $e->getMessage() . "<br/>";
+    die();
+}
+
+}
+else{
+  echo "les mots de passe ne sont pas identiques";
+}
+
+
+ ?>
+
